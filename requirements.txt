@@ -1,0 +1,9 @@
+torch==1.7.0
+sklearn
+numpy
+tqdm
+jsonlines
+wordsegment
+pytorch_pretrained_bert
+transformers~=3.5.1
+matplotlib

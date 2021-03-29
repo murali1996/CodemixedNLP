@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Spell-Checking</title>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+	</head>
+	<body>
+
+		<p style="margin-bottom:0.2cm;"></p>
+		<header>
+			<div class="container">
+				<div class="container col-lg-6 text-center">
+					<h2>HinglishNLP</h2>
+				</div>
+			</div>
+		</header>
+
+	    <p style="margin-bottom:1cm;"></p>
+	    <div class="container col-lg-6 text-right">
+	        <div style="padding-bottom: 0.5cm">
+	        	<!-- <div class="card text-center bg-light"> -->
+	                <div class="card-body" style="padding-bottom: 0.2cm">
+						<form action="{{ url_for('home')}}" method="POST">
+	                    	<input class="card-text btn btn-outline-primary" id="btn" type="submit" value="Go To Homepage"></button>
+	                    	<div class="spinner" id="spinner" style="display: none">
+	                      		<div class="double-bounce1"></div>
+	                      		<div class="double-bounce2"></div>
+	                    	</div>
+	                    </form>
+	                </div>
+	               <!-- </div> -->
+	        </div>
+	    </div>
+	    <p style="margin-bottom:0.5cm;"></p>
+	    <div class="container col-lg-6">
+	        <div style="padding-bottom: 0.5cm">
+	            <div class="card text-center bg-light">
+	                <div class="card-body" style="padding-bottom:0.2cm; ">
+	                	<form action="{{ url_for('predict')}}" method="POST" onsubmit='copyContent()'>
+	                		<!-- need to be div because we wanna color partially -->
+	                		<!-- newly added snippet start -->
+	                		<textarea name="hidden-message" id="hidden-message" style="display:none;"></textarea>
+							<script>
+							function copyContent () {
+							    document.getElementById("hidden-message").value   =  
+							        document.getElementById("message-txt").innerText  ;
+							}
+							</script>
+							<!-- newly added snippet end -->
+	                		<div class="card-title form-control" type="text" id="message-txt" name="message" placeholder="Enter some text for spell checking..." rows="3" cols="50" contenteditable="true" style="text-align:left;"></div>
+	                    	<input class="card-text btn btn-outline-primary" style="position: absolute; left: 36%;" id="btn" type="submit" value="predict"></button>
+                    		<div class="spinner" id="spinner" style="display: none">
+                      			<div class="double-bounce1"></div>
+                      			<div class="double-bounce2"></div>
+                    		</div>
+                    	</form>
+						<form action="{{ url_for('reset')}}" method="POST">
+	                    	<input class="card-text btn btn-outline-primary" style="position: relative; left: 7%;" id="btn" type="submit" value="reset" name="message"></button>
+	                    	<div class="spinner" id="spinner" style="display: none">
+	                      		<div class="double-bounce1"></div>
+	                      		<div class="double-bounce2"></div>
+	                    	</div>
+	                    </form>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+
+
+
+	    <p style="margin-bottom:0.75cm;"></p>
+	    <div class="container col-lg-6 text-right">
+	        <div style="padding-bottom: 0.5cm">
+	                <div class="card-body text-left" style="padding-bottom:0.2cm; float:left; margin:5px;">
+						<form action="{{ url_for('predict')}}" method="POST">
+	                    	<input class="card-text btn btn-outline-primary" id="btn" type="submit" value="Chup bhosdike . He has been exonerated of all the charges . Tum log ghanta prove nahi kar paaye ." name="hidden-message"></button>
+	                    	<div class="spinner" id="spinner" style="display: none">
+	                      		<div class="double-bounce1"></div>
+	                      		<div class="double-bounce2"></div>
+	                    	</div>
+	                    </form>
+	                </div>
+	                <div class="card-body text-left" style="padding-bottom:0.2cm; float:left; margin:5px;">
+						<form action="{{ url_for('predict')}}" method="POST">
+	                    	<input class="card-text btn btn-outline-primary" id="btn" type="submit" value="Praise the Great Giver who gives sustenance to all . Paid obeisance at Gurudwara Sr" name="hidden-message"></button>
+	                    	<div class="spinner" id="spinner" style="display: none">
+	                      		<div class="double-bounce1"></div>
+	                      		<div class="double-bounce2"></div>
+	                    	</div>
+	                    </form>
+	                </div>
+	                <div class="card-body text-left" style="padding-bottom:0.2cm; float:left; margin:5px;">
+						<form action="{{ url_for('predict')}}" method="POST">
+	                    	<input class="card-text btn btn-outline-primary" id="btn" type="submit" value="Ye soach kyon h ki muslimo ka bikash muslim hin kar sakta h hindu nahi .... Ky ye khangressi sarkar h jo sirf paise" name="hidden-message"></button>
+	                    	<div class="spinner" id="spinner" style="display: none">
+	                      		<div class="double-bounce1"></div>
+	                      		<div class="double-bounce2"></div>
+	                    	</div>
+	                    </form>
+	                </div> 
+	                <div class="card-body text-left" style="padding-bottom:0.2cm; float:left; margin:5px;">
+						<form action="{{ url_for('predict')}}" method="POST">
+	                    	<input class="card-text btn btn-outline-primary" id="btn" type="submit" value="tm dikha rhy ho apni asli auqaat wese btao tou ye propaganda kyu krta hai shahid masood" name="hidden-message"></button>
+	                    	<div class="spinner" id="spinner" style="display: none">
+	                      		<div class="double-bounce1"></div>
+	                      		<div class="double-bounce2"></div>
+	                    	</div>
+	                    </form>
+	                </div>
+				<div class="card-body text-left" style="padding-bottom:0.2cm; float:left; margin:5px;">
+						<form action="{{ url_for('predict')}}" method="POST">
+	                    	<input class="card-text btn btn-outline-primary" id="btn" type="submit" value="good soch pm narendra modi" name="hidden-message"></button>
+	                    	<div class="spinner" id="spinner" style="display: none">
+	                      		<div class="double-bounce1"></div>
+	                      		<div class="double-bounce2"></div>
+	                    	</div>
+	                    </form>
+	                </div>
+	                <div class="card-body text-left" style="padding-bottom:0.2cm; float:left; margin:5px;">
+						<form action="{{ url_for('predict')}}" method="POST">
+	                    	<input class="card-text btn btn-outline-primary" id="btn" type="submit" value="kal mei entertainment dekhne jaa raha hui" name="hidden-message"></button>
+	                    	<div class="spinner" id="spinner" style="display: none">
+	                      		<div class="double-bounce1"></div>
+	                      		<div class="double-bounce2"></div>
+	                    	</div>
+	                    </form>
+	                </div>
+	                <div class="card-body text-left" style="padding-bottom:0.2cm; float:left; margin:5px;">
+						<form action="{{ url_for('predict')}}" method="POST">
+	                    	<input class="card-text btn btn-outline-primary" id="btn" type="submit" value="Or mere projects bhi bohot hain" name="hidden-message"></button>
+	                    	<div class="spinner" id="spinner" style="display: none">
+	                      		<div class="double-bounce1"></div>
+	                      		<div class="double-bounce2"></div>
+	                    	</div>
+	                    </form>
+	                </div>
+	                <div class="card-body text-left" style="padding-bottom:0.2cm; float:left; margin:5px;">
+						<form action="{{ url_for('predict')}}" method="POST">
+	                    	<input class="card-text btn btn-outline-primary" id="btn" type="submit" value="sahab agar ap hamare mulk ko terrorist kehte ho tou hamare Mulk may terrorism indua hi karwata hai" name="hidden-message"></button>
+	                    	<div class="spinner" id="spinner" style="display: none">
+	                      		<div class="double-bounce1"></div>
+	                      		<div class="double-bounce2"></div>
+	                    	</div>
+	                    </form>
+	                </div>
+	            	<div class="card-body text-left" style="padding-bottom:0.2cm; float:left; margin:5px;">
+						<form action="{{ url_for('predict')}}" method="POST">
+	                    	<input class="card-text btn btn-outline-primary" id="btn" type="submit" value="porki tum to sale apni 6 sal ki bacchi bhi nahi chhodte uske sath rape karte ho fir usi se nikah." name="hidden-message"></button>
+	                    	<div class="spinner" id="spinner" style="display: none">
+	                      		<div class="double-bounce1"></div>
+	                      		<div class="double-bounce2"></div>
+	                    	</div>
+	                    </form>
+	                </div>
+	                <div class="card-body text-left" style="padding-bottom:0.2cm; float:left; margin:5px;">
+						<form action="{{ url_for('predict')}}" method="POST">
+	                    	<input class="card-text btn btn-outline-primary" id="btn" type="submit" value="Badnam Gujat kutte ki olaad madrchod Pakistani kutto suar ki olaad madrchod Pakistani kutto suar ki olaad" name="hidden-message"></button>
+	                    	<div class="spinner" id="spinner" style="display: none">
+	                      		<div class="double-bounce1"></div>
+	                      		<div class="double-bounce2"></div>
+	                    	</div>
+	                    </form>
+	                </div>
+	                <div class="card-body text-left" style="padding-bottom:0.2cm; float:left; margin:5px;">
+						<form action="{{ url_for('predict')}}" method="POST">
+	                    	<input class="card-text btn btn-outline-primary" id="btn" type="submit" value="internal linking ke liye aap content linking or popular post jaise widget bhi use kar sakate hai ." name="hidden-message"></button>
+	                    	<div class="spinner" id="spinner" style="display: none">
+	                      		<div class="double-bounce1"></div>
+	                      		<div class="double-bounce2"></div>
+	                    	</div>
+	                    </form>
+	                </div>
+	                <div class="card-body text-left" style="padding-bottom:0.2cm; float:left; margin:5px;">
+						<form action="{{ url_for('predict')}}" method="POST">
+	                    	<input class="card-text btn btn-outline-primary" id="btn" type="submit" value="kewl .... add karnaa hai about us page me .. kis topic par site hai .... site kaa macosad k yaa hai" name="hidden-message" style="width: 100%; white-space: normal !important; word-wrap: break-word !important; text-align: left"></button>
+	                    	<div class="spinner" id="spinner" style="display: none">
+	                      		<div class="double-bounce1"></div>
+	                      		<div class="double-bounce2"></div>
+	                    	</div>
+	                    </form>
+	                </div>
+<!--	                <div class="card-body text-left" style="padding-bottom:0.2cm; float:left; margin:5px;">-->
+<!--						<form action="{{ url_for('predict')}}" method="POST">-->
+<!--	                    	<input class="card-text btn btn-outline-primary" id="btn" type="submit" value="Aoccdrnig to a rscheearch at Cmabrigde Uinervtisy, it deosn’t mttaer in waht oredr the ltteers in a wrod are, the olny iprmoetnt tihng is taht the frist and lsat ltteer be at the rghit pclae. The rset can be a toatl mses and you can sitll raed it wouthit porbelm. Tihs is bcuseae the huamn mnid deos not raed ervey lteter by istlef, but the wrod as a wlohe" name="hidden-message" style="width: 100%; white-space: normal !important; word-wrap: break-word !important; text-align: left"></button>-->
+<!--	                    	<div class="spinner" id="spinner" style="display: none">-->
+<!--	                      		<div class="double-bounce1"></div>-->
+<!--	                      		<div class="double-bounce2"></div>-->
+<!--	                    	</div>-->
+<!--	                    </form>-->
+<!--	                </div>               	                                -->
+	        </div>
+	    </div>
+
+	    
+	</body>
+</html>
